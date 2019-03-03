@@ -1,0 +1,155 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PacmanPositionReport
+{
+    
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int _X = 0;
+            int _Y = 0;
+            String _F = "East";
+            int count = 0;
+            bool loopvar = true;
+
+
+            string loopvaroutside;
+            string loopvarmain;
+            do
+            {
+                Console.WriteLine("Begin Game by Typing X,Y Coordinates and Direction(N,S,E,W):");
+                Console.WriteLine("Type exit to finish the Game:");
+
+                Console.WriteLine("Please enter X Coordinate and press enter:");
+                _X = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Please enter Y Coordinate and press enter:");
+                _Y = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Please enter Facing Direction and press enter:");
+                _F = Console.ReadLine();
+                Console.WriteLine("Do you want to continue?");
+
+                loopvaroutside   = Console.ReadLine().ToUpper();
+
+            } while (loopvaroutside == "N");
+
+            while (loopvarmain=="exit")
+            {
+                
+                Console.WriteLine("Begin Game by Typing X,Y Coordinates and Direction(N,S,E,W):");
+                Console.WriteLine("Type exit to finish the Game:");
+
+                Console.WriteLine("Please enter X Coordinate:");
+                _X = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Please enter Y Coordinate:");
+                _Y = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Please enter Facing Direction:");
+                _F = Console.ReadLine();
+
+
+
+
+                Console.WriteLine("Select your option:");
+            Console.WriteLine("1 - PLACE(X,Y) and Direction");
+            Console.WriteLine("2 - Move");
+            Console.WriteLine("3 - Left");
+            Console.WriteLine("4 - Right");
+                Console.Write("Type exit to finish");
+            string selected= Console.ReadLine();
+            if((selected!="1") & (count == 0))
+                Console.WriteLine("Select Option 1 First - initial coordinates for Pacman and its direction");              
+                else if ((selected == "1") & (count == 0)) count++;
+                else
+                {
+                    switch (selected)
+                    {
+                        case "1":
+                            Console.WriteLine("Please enter X Coordinate:");
+                            _X = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Please enter Y Coordinate:");
+                            _Y = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Please enter Facing Direction:");
+                            _F = Console.ReadLine();
+                            break;
+                        case "2":
+                            Move(ref _X, ref _Y, ref _F);
+                            break;
+                        case "3":
+                            Left(ref _F);
+                            break;
+                        case "4":
+                            Right(ref _F);
+                            break;
+                    }
+
+
+
+
+
+
+                }
+
+                
+            }
+            
+            void Move(ref int x,ref int y, ref string f  )
+            {
+                if(f == "S" && (y - 1) >= 0) {
+                    y--;
+                } else if (f == "E" && (x + 1) <= 5)
+                {
+                    x++;
+                }
+                else if (f == "N" && (y + 1) <= 5)
+                {
+                    y++;
+                }
+                else if(f == "W" && (x - 1) >= 0) {
+                    x--;
+                }
+            }
+            void Left(ref string F)
+            {
+                switch (F)
+                {
+                    case "S":
+                        F = "E";
+                        break;
+                    case "E":
+                        F = "N";
+                        break;
+                    case "N":
+                        F = "W";
+                        break;
+                    case "W":
+                        F = "S";
+                        break;
+                }
+            }
+            void Right(ref string F)
+            {
+                switch (F)
+                {
+                    case "S":
+                        F = "W";
+                        break;
+                    case "E":
+                        F = "S";
+                        break;
+                    case "N":
+                        F = "E";
+                        break;
+                    case "W":
+                        F = "N";
+                        break;
+                }
+            }
+            
+        }
+    }
+}
